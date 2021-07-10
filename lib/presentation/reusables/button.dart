@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tauria_test/presentation/reusables/margin.dart';
 import 'package:tauria_test/presentation/reusables/texts.dart';
+import 'package:tauria_test/presentation/utils/colors.dart';
 import 'package:tauria_test/presentation/utils/size_config.dart';
 
 class XButton extends StatelessWidget {
@@ -60,7 +61,15 @@ class XButton extends StatelessWidget {
             ? config.sw(width!).toDouble()
             : config.sw(100).toDouble(),
         decoration: BoxDecoration(
-            color: buttonColor ?? Theme.of(context).accentColor,
+            gradient: LinearGradient(
+              colors: [AppColors.redDark, AppColors.redLight], 
+              stops: [0.1, 0.9]
+            ),
+            boxShadow: [BoxShadow(
+              blurRadius: 5,
+              spreadRadius: 5,
+              color: AppColors.redDark
+            )],
             borderRadius: radius != null
                 ? BorderRadius.circular(radius!)
                 : BorderRadius.circular(5.0),
