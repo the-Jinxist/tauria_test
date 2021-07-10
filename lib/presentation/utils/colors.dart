@@ -6,6 +6,5 @@ mixin AppColors {
   static final Color green = Color.fromRGBO(87, 193, 104, 1);
   static final Color lightGreen = Color.fromRGBO(222, 243, 225, 1);
   static final Color textColor = Color.fromRGBO(109, 110, 156, 1);
-  
-	
+  static final Color backgroundColor = Color.fromRGBO(244, 243, 249, 1);
 }
