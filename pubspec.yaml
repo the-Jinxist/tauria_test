@@ -51,7 +51,7 @@ flutter:
   fonts: 
     - family: Roboto
       fonts:
-        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Light.ttf
           style: normal
         - asset: assets/fonts/Roboto-Italic.ttf
           style: italic
