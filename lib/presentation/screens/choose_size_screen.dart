@@ -40,7 +40,7 @@ class _ChooseSizeScreenState extends State<ChooseSizeScreen> {
       body: Container(
         height: SizeConfig.screenHeightDp,
         width: SizeConfig.screenWidthDp,
-        margin: EdgeInsets.only(top: 100),
+       
         child: Stack(
           children: [
             SizedBox(
