@@ -40,35 +40,34 @@ class _ChooseSizeScreenState extends State<ChooseSizeScreen> {
       body: Container(
         height: SizeConfig.screenHeightDp,
         width: SizeConfig.screenWidthDp,
-       
         child: Stack(
           children: [
             SizedBox(
               height: _config.sh(500).toDouble(),
-              width: _config.sw(500).toDouble(),
               child: Stack(
                 alignment: Alignment.bottomCenter,
                 children: [
                   Container(
-                    height: _config.sh(500).toDouble(),
-                    width: _config.sw(500).toDouble(),
+                    width: SizeConfig.screenWidthDp + 200,
+                    margin: EdgeInsets.only(top: 10),
                     decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: AppColors.textColor.withOpacity(0.5), width: 1)
-                    ),
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                            color: AppColors.textColor.withOpacity(0.5),
+                            width: 1)),
                   ),
                   Container(
-                    padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: AppColors.textColor.withOpacity(0.5)  
-                    ),
-                    child: TitleText(
-                      text: '12\"', 
-                      fontSize: 10, 
-                      textColor: AppColors.textColor,
-                      )
-                    )
+                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      margin:
+                          EdgeInsets.only(bottom: _config.sh(55).toDouble()),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Color(0xFCCCCCCC)),
+                      child: TitleText(
+                        text: '12\"',
+                        fontSize: 10,
+                        textColor: AppColors.textColor,
+                      )),
                 ],
               ),
             ),
@@ -85,43 +84,48 @@ class _ChooseSizeScreenState extends State<ChooseSizeScreen> {
               child: Column(
                 children: [
                   YMargin(20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          NormalText(
-                            text: 'Create Your Pizza',
-                            textColor: Colors.white,
-                            fontSize: 27,
-                          ),
-                          YMargin(2),
-                          TitleText(
-                            text: 'SIZE, CRUST, TOPPINGS',
-                            fontSize: 13,
-                            textColor: Colors.white.withOpacity(0.7),
-                          )
-                        ],
-                      ),
-                      TitleText(
-                        text: '\$10.00',
-                        textColor: Colors.white,
-                      )
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            NormalText(
+                              text: 'Create Your Pizza',
+                              textColor: Colors.white,
+                              fontSize: 27,
+                            ),
+                            YMargin(2),
+                            TitleText(
+                              text: 'SIZE, CRUST, TOPPINGS',
+                              fontSize: 13,
+                              textColor: Colors.white.withOpacity(0.7),
+                            )
+                          ],
+                        ),
+                        TitleText(
+                          text: '\$10.00',
+                          fontSize: 22,
+                          textColor: Colors.white,
+                        )
+                      ],
+                    ),
                   ),
                   YMargin(20),
                   SizedBox(
-                      height: _config.sh(370).toDouble(),
-                      width: _config.sw(370).toDouble(),
+                      height: _config.sh(290).toDouble(),
+                      width: _config.sw(290).toDouble(),
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
                           Container(
-                            height: _config.sh(350).toDouble(),
-                            width: _config.sw(350).toDouble(),
+                            height: _config.sh(280).toDouble(),
+                            width: _config.sw(280).toDouble(),
                             child: ClipRect(
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
                               child: BackdropFilter(
                                 filter:
                                     ImageFilter.blur(sigmaX: 10, sigmaY: 10),
@@ -130,53 +134,74 @@ class _ChooseSizeScreenState extends State<ChooseSizeScreen> {
                                     color: Colors.white.withOpacity(0.6),
                                     shape: BoxShape.circle,
                                   ),
-                                  height: _config.sh(350).toDouble(),
-                                  width: _config.sw(350).toDouble(),
+                                  height: _config.sh(280).toDouble(),
+                                  width: _config.sw(280).toDouble(),
                                 ),
                               ),
                             ),
                           ),
                           Container(
-                            height: _config.sh(300).toDouble(),
-                            width: _config.sw(300).toDouble(),
+                            height: _config.sh(250).toDouble(),
+                            width: _config.sw(250).toDouble(),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               shape: BoxShape.circle,
                             ),
                           ),
-                          Image.asset(
-                            'large_size_pizza'.toPng(),
-                            height: _config.sh(250).toDouble(),
-                            width: _config.sw(250).toDouble(),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 30.0),
+                              child: Image.asset(
+                                'large_size_pizza'.toPng(),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           )
                         ],
                       )),
-                  YMargin(70),
+                  YMargin(120),
                   Container(
-                    height: _config.sh(120).toDouble(),
+                    height: _config.sh(140).toDouble(),
                     width: SizeConfig.screenWidthDp - 30,
-                    child: Column(
-                      children: [
-                        RichText(
-                            text: TextSpan(
-                                text: 'Choose your ',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText1!
-                                    .copyWith(fontSize: 22),
-                                children: [
-                              TextSpan(
-                                text: 'size',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline1!
-                                    .copyWith(fontSize: 22),
+                    child: ClipRect(
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                        child: Container(
+                          height: _config.sh(140).toDouble(),
+                          width: SizeConfig.screenWidthDp - 30,
+                          decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.6),
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Column(
+                            children: [
+                              YMargin(20),
+                              RichText(
+                                  text: TextSpan(
+                                      text: 'Choose your ',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1!
+                                          .copyWith(fontSize: 20),
+                                      children: [
+                                    TextSpan(
+                                      text: 'size',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline1!
+                                          .copyWith(fontSize: 20),
+                                    )
+                                  ])),
+                              YMargin(20),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                child: Selector(["Small", "Medium", "Large"],
+                                    (String selectedOption) {}),
                               )
-                            ])),
-                        YMargin(20),
-                        Selector(["Small", "Medium", "Large"],
-                            (String selectedOption) {})
-                      ],
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                   YMargin(70),
@@ -188,6 +213,7 @@ class _ChooseSizeScreenState extends State<ChooseSizeScreen> {
                 left: 0,
                 right: 0,
                 child: XButton(
+                    radius: 0,
                     height: _config.sh(65).toDouble(),
                     width: SizeConfig.screenWidthDp,
                     onClick: () {},

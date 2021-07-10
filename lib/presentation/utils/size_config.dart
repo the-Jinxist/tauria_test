@@ -7,7 +7,7 @@ class SizeConfig {
 
   SizeConfig._();
 
-  static late SizeConfig? _instance;
+  static SizeConfig? _instance;
   static const int defaultWidth = 1080;
   static const int defaultHeight = 1920;
 

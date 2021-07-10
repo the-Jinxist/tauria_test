@@ -47,9 +47,9 @@ class _SelectorState extends State<Selector> {
               boxShadow: selected == index
                   ? [
                       BoxShadow(
-                          blurRadius: 5,
+                          blurRadius: 10,
                           spreadRadius: 5,
-                          color: AppColors.redDark)
+                          color: AppColors.redDark.withOpacity(0.4))
                     ]
                   : null,
             ),
@@ -58,6 +58,7 @@ class _SelectorState extends State<Selector> {
                     text: widget.options[index],
                     fontSize: 15,
                     textColor: Colors.white,
+                    fontWeight: FontWeight.w500,
                   )
                 : NormalText(text: widget.options[index]),
           ),
