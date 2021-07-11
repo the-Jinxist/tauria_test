@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tauria_test/presentation/reusables/button.dart';
 import 'package:tauria_test/presentation/reusables/margin.dart';
 import 'package:tauria_test/presentation/reusables/texts.dart';
+import 'package:tauria_test/presentation/screens/checkout_screen.dart';
 import 'package:tauria_test/presentation/utils/colors.dart';
 import 'package:tauria_test/presentation/utils/size_config.dart';
 import 'package:tauria_test/domain/extensions.dart';
@@ -53,10 +54,8 @@ class _ConfirmPizzaScreenState extends State<ConfirmPizzaScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SvgPicture.asset(
-                    'pizza_icon'.toSVG(),
-                    height: _config.sh(25).toDouble()
-                  ),
+                  SvgPicture.asset('pizza_icon'.toSVG(),
+                      height: _config.sh(25).toDouble()),
                   YMargin(7),
                   NormalText(
                       text: 'Check your',
@@ -83,7 +82,7 @@ class _ConfirmPizzaScreenState extends State<ConfirmPizzaScreen> {
                       alignment: Alignment.centerRight,
                       child: Container(
                         height: _config.sh(400).toDouble(),
-                            width: _config.sw(200).toDouble(),
+                        width: _config.sw(200).toDouble(),
                         child: Column(children: [
                           Container(
                             height: _config.sh(200).toDouble(),
@@ -95,7 +94,8 @@ class _ConfirmPizzaScreenState extends State<ConfirmPizzaScreen> {
                                         _config.sw(200).toDouble()))),
                             child: ClipRect(
                               child: BackdropFilter(
-                                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                                filter:
+                                    ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                                 child: Container(
                                   decoration: BoxDecoration(
                                     color: Colors.white.withOpacity(0.6),
@@ -116,7 +116,8 @@ class _ConfirmPizzaScreenState extends State<ConfirmPizzaScreen> {
                                         _config.sh(200).toDouble()))),
                             child: ClipRect(
                               child: BackdropFilter(
-                                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                                filter:
+                                    ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                                 child: Container(
                                   decoration: BoxDecoration(
                                     color: Colors.white.withOpacity(0.6),
@@ -134,30 +135,29 @@ class _ConfirmPizzaScreenState extends State<ConfirmPizzaScreen> {
                       alignment: Alignment.centerRight,
                       child: Container(
                         height: _config.sh(380).toDouble(),
-                                width: _config.sw(190).toDouble(),
-                        child: Column(
-                            children: [
-                              Container(
-                                height: _config.sh(190).toDouble(),
-                                width: _config.sw(190).toDouble(),
-                                clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(
-                                            _config.sh(190).toDouble()))),
-                              ),
-                              Container(
-                                height: _config.sh(190).toDouble(),
-                                width: _config.sw(190).toDouble(),
-                                clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(
-                                            _config.sh(190).toDouble()))),
-                              ),
-                            ]),
+                        width: _config.sw(190).toDouble(),
+                        child: Column(children: [
+                          Container(
+                            height: _config.sh(190).toDouble(),
+                            width: _config.sw(190).toDouble(),
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(
+                                        _config.sh(190).toDouble()))),
+                          ),
+                          Container(
+                            height: _config.sh(190).toDouble(),
+                            width: _config.sw(190).toDouble(),
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(
+                                        _config.sh(190).toDouble()))),
+                          ),
+                        ]),
                       ),
                     ),
                     Positioned(
@@ -165,11 +165,13 @@ class _ConfirmPizzaScreenState extends State<ConfirmPizzaScreen> {
                         bottom: 20,
                         right: 1,
                         left: 0,
-                        child: Image.asset(
-                          
-                          'half_pizza'.toPng(),
-                          fit: BoxFit.cover,
-                          scale: 0.2,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 20.0),
+                          child: Image.asset(
+                            'half_pizza'.toPng(),
+                            fit: BoxFit.cover,
+                            scale: 0.2,
+                          ),
                         ))
                   ],
                 ),
@@ -196,8 +198,7 @@ class _ConfirmPizzaScreenState extends State<ConfirmPizzaScreen> {
                             color: Colors.white.withOpacity(0.7),
                             padding: EdgeInsets.symmetric(vertical: 30),
                             child: Column(
-                              crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 YMargin(20),
                                 Padding(
@@ -207,12 +208,13 @@ class _ConfirmPizzaScreenState extends State<ConfirmPizzaScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      SvgPicture.asset('checkout_icon'.toSVG(),
-                                          height: _config.sh(15).toDouble(),
-                                          width: _config.sw(15).toDouble(),
-                                          color: AppColors.redDark,
+                                      SvgPicture.asset(
+                                        'checkout_icon'.toSVG(),
+                                        height: _config.sh(15).toDouble(),
+                                        width: _config.sw(15).toDouble(),
+                                        color: AppColors.redDark,
                                       ),
-                                          YMargin(5),
+                                      YMargin(5),
                                       TitleText(
                                           text: 'ORDER SUMMARY',
                                           fontSize: 12,
@@ -245,8 +247,8 @@ class _ConfirmPizzaScreenState extends State<ConfirmPizzaScreen> {
                                               fontSize: 12,
                                             ),
                                           ]),
-                                          YMargin(3),
-                                           Row(
+                                      YMargin(3),
+                                      Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
@@ -259,8 +261,8 @@ class _ConfirmPizzaScreenState extends State<ConfirmPizzaScreen> {
                                               fontSize: 12,
                                             ),
                                           ]),
-                                          YMargin(3),
-                                           Row(
+                                      YMargin(3),
+                                      Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
@@ -273,8 +275,8 @@ class _ConfirmPizzaScreenState extends State<ConfirmPizzaScreen> {
                                               fontSize: 12,
                                             ),
                                           ]),
-                                          YMargin(3),
-                                           Row(
+                                      YMargin(3),
+                                      Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
@@ -287,8 +289,8 @@ class _ConfirmPizzaScreenState extends State<ConfirmPizzaScreen> {
                                               fontSize: 12,
                                             ),
                                           ]),
-                                          YMargin(3),
-                                           Row(
+                                      YMargin(3),
+                                      Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
@@ -301,8 +303,8 @@ class _ConfirmPizzaScreenState extends State<ConfirmPizzaScreen> {
                                               fontSize: 12,
                                             ),
                                           ]),
-                                          YMargin(3),
-                                           Row(
+                                      YMargin(3),
+                                      Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
@@ -319,12 +321,11 @@ class _ConfirmPizzaScreenState extends State<ConfirmPizzaScreen> {
                                   ),
                                 ),
                                 YMargin(20),
-                                Divider(
-                                  color: AppColors.textColor
-                                ),
+                                Divider(color: AppColors.textColor),
                                 YMargin(20),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15.0),
                                   child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -350,7 +351,10 @@ class _ConfirmPizzaScreenState extends State<ConfirmPizzaScreen> {
                 child: XButton(
                     height: _config.sh(65).toDouble(),
                     width: SizeConfig.screenWidthDp,
-                    onClick: () {},
+                    onClick: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => CheckoutScreen()));
+                    },
                     text: "Confirm Pizza"))
           ],
         ),
