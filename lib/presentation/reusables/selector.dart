@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tauria_test/presentation/reusables/texts.dart';
 import 'package:tauria_test/presentation/utils/colors.dart';
-import 'package:tauria_test/presentation/utils/size_config.dart';
 
 class Selector extends StatefulWidget {
   final List<String> options;
@@ -18,7 +17,6 @@ class Selector extends StatefulWidget {
 }
 
 class _SelectorState extends State<Selector> {
-  final SizeConfig _config = SizeConfig();
 
   int selected = 1;
   @override
@@ -35,7 +33,7 @@ class _SelectorState extends State<Selector> {
             widget.optionSelected(widget.options[index]);
           },
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
             decoration: BoxDecoration(
               color: selected != index ? Colors.transparent : null,
               gradient: selected == index
@@ -48,8 +46,8 @@ class _SelectorState extends State<Selector> {
                   ? [
                       BoxShadow(
                           blurRadius: 10,
-                          spreadRadius: 5,
-                          color: AppColors.redDark.withOpacity(0.4))
+                          spreadRadius: 3,
+                          color: AppColors.redDark.withOpacity(0.3))
                     ]
                   : null,
             ),

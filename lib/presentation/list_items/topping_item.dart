@@ -27,6 +27,8 @@ class _ToppingItemState extends State<ToppingItem> {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      elevation: 3,
+      margin: EdgeInsets.symmetric(vertical: 7, horizontal: 7),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         child: Row(
@@ -36,7 +38,11 @@ class _ToppingItemState extends State<ToppingItem> {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset(widget.topping.toppingImageName.toPng()),
+                Image.asset(
+                  widget.topping.toppingImageName.toPng(), 
+                  height: _config.sh(70).toDouble(),
+                  width: _config.sw(70).toDouble(),
+                  fit: BoxFit.cover,),
                 XMargin(10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,10 +63,12 @@ class _ToppingItemState extends State<ToppingItem> {
                 });
               },
               child: Container(
-                  height: _config.sh(30).toDouble(),
-                  width: _config.sw(30).toDouble(),
+                margin: EdgeInsets.only(left: 50),
+                  height: _config.sh(20).toDouble(),
+                  width: _config.sw(20).toDouble(),
                   decoration: BoxDecoration(
                     color: !isSelected ? AppColors.backgroundColor : null,
+                    shape: BoxShape.circle,
                     gradient: isSelected
                         ? LinearGradient(
                             colors: [AppColors.redDark, AppColors.redLight],
@@ -68,17 +76,17 @@ class _ToppingItemState extends State<ToppingItem> {
                         : null,
                     boxShadow: isSelected
                         ? [
-                            BoxShadow(
-                                blurRadius: 5,
-                                spreadRadius: 5,
-                                color: AppColors.redDark)
-                          ]
+                      BoxShadow(
+                          blurRadius: 10,
+                          spreadRadius: 3,
+                          color: AppColors.redDark.withOpacity(0.3))
+                    ]
                         : [
                             BoxShadow(color: Colors.grey),
                             BoxShadow(
-                                blurRadius: 12.0,
-                                spreadRadius: -12.0,
-                                color: AppColors.backgroundColor)
+                                blurRadius: 0.0,
+                                spreadRadius: -15.0,
+                                color: AppColors.textColor)
                           ],
                   ),
                   child: isSelected

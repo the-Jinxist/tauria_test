@@ -2,44 +2,24 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tauria_test/domain/models/topping_model.dart';
-import 'package:tauria_test/presentation/list_items/topping_item.dart';
 import 'package:tauria_test/presentation/reusables/button.dart';
 import 'package:tauria_test/presentation/reusables/margin.dart';
+import 'package:tauria_test/presentation/reusables/selector.dart';
 import 'package:tauria_test/presentation/reusables/texts.dart';
-import 'package:tauria_test/presentation/screens/confirm_pizza_screen.dart';
+import 'package:tauria_test/presentation/screens/choose_topping_screen.dart';
 import 'package:tauria_test/presentation/utils/colors.dart';
 import 'package:tauria_test/presentation/utils/size_config.dart';
 import 'package:tauria_test/domain/extensions.dart';
 
-class ChooseToppingScreen extends StatefulWidget {
-  const ChooseToppingScreen({Key? key}) : super(key: key);
+class ChooseCrustScreen extends StatefulWidget {
+  const ChooseCrustScreen({Key? key}) : super(key: key);
 
   @override
-  _ChooseToppingScreenState createState() => _ChooseToppingScreenState();
+  _ChooseCrustScreenState createState() => _ChooseCrustScreenState();
 }
 
-class _ChooseToppingScreenState extends State<ChooseToppingScreen> {
+class _ChooseCrustScreenState extends State<ChooseCrustScreen> {
   final SizeConfig _config = SizeConfig();
-
-  List<Topping> _listOfToppings = <Topping>[
-    Topping(
-        toppingName: 'Pepperoni',
-        toppingImageName: 'pepperoni',
-        toppingPrice: '0.00'),
-    Topping(
-        toppingName: 'Mushrooms',
-        toppingImageName: 'mushrooms',
-        toppingPrice: '0.00'),
-    Topping(
-        toppingName: 'Black Olives',
-        toppingImageName: 'mushrooms',
-        toppingPrice: '0.00'),
-    Topping(
-        toppingName: 'Onions',
-        toppingImageName: 'mushrooms',
-        toppingPrice: '0.00'),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +43,36 @@ class _ChooseToppingScreenState extends State<ChooseToppingScreen> {
         width: SizeConfig.screenWidthDp,
         child: Stack(
           children: [
+            SizedBox(
+              height: _config.sh(500).toDouble(),
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  Container(
+                    width: SizeConfig.screenWidthDp + 200,
+                    margin: EdgeInsets.only(top: 10),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                            color: AppColors.textColor.withOpacity(0.5),
+                            width: 1)),
+                  ),
+                  Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      margin:
+                          EdgeInsets.only(bottom: _config.sh(55).toDouble()),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Color(0xFCCCCCCC)),
+                      child: TitleText(
+                        text: '+\$2.00',
+                        fontSize: 10,
+                        textColor: AppColors.textColor,
+                      )),
+                ],
+              ),
+            ),
             Container(
               height: _config.sh(250).toDouble(),
               width: SizeConfig.screenWidthDp,
@@ -77,7 +87,7 @@ class _ChooseToppingScreenState extends State<ChooseToppingScreen> {
                 children: [
                   YMargin(20),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,13 +108,13 @@ class _ChooseToppingScreenState extends State<ChooseToppingScreen> {
                                   fontSize: 12,
                                   textColor: Colors.white,
                                 ),
-                                XMargin(5),
+                                XMargin(4),
                                 TitleText(
-                                  text: 'THICK CRUST,',
+                                  text: 'CRUST,',
                                   fontSize: 12,
-                                  textColor: Colors.white,
+                                  textColor: Colors.white.withOpacity(0.5),
                                 ),
-                                XMargin(5),
+                                XMargin(4),
                                 TitleText(
                                   text: 'TOPPINGS',
                                   fontSize: 12,
@@ -169,79 +179,52 @@ class _ChooseToppingScreenState extends State<ChooseToppingScreen> {
                           )
                         ],
                       )),
-                  YMargin(40),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: _config.sh(190).toDouble(),
-                        width: SizeConfig.screenWidthDp,
-                        child: Stack(children: [
-                          Align(
-                            alignment: Alignment.center,
-                            child: Container(
-                              height: _config.sh(190).toDouble(),
-                              width: SizeConfig.screenWidthDp - 30,
-                              child: ClipRect(
-                                child: BackdropFilter(
-                                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                                  child: Container(
-                                    height: _config.sh(200).toDouble(),
-                                    width: SizeConfig.screenWidthDp - 30,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white.withOpacity(0.6),
-                                        borderRadius: BorderRadius.circular(20)),
-                                    child: Column(
+                  YMargin(70),
+                  Container(
+                    height: _config.sh(140).toDouble(),
+                    width: SizeConfig.screenWidthDp - 30,
+                    child: ClipRect(
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                        child: Container(
+                          height: _config.sh(140).toDouble(),
+                          width: SizeConfig.screenWidthDp - 30,
+                          decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.6),
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Column(
+                            children: [
+                              YMargin(20),
+                              RichText(
+                                  text: TextSpan(
+                                      text: 'Choose your ',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1!
+                                          .copyWith(fontSize: 20),
                                       children: [
-                                        YMargin(20),
-                                        RichText(
-                                            text: TextSpan(
-                                                text: 'Choose up to ',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyText1!
-                                                    .copyWith(fontSize: 20),
-                                                children: [
-                                              TextSpan(
-                                                text: '7 toppings',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline1!
-                                                    .copyWith(fontSize: 20),
-                                              )
-                                            ])),
-                                            YMargin(5),
-                                        TitleText(text: 'FREE 3 ADD-ONS', fontSize: 12, textColor: AppColors.textColor.withOpacity(0.8)),
-                                        YMargin(20),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
+                                    TextSpan(
+                                      text: 'crust',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline1!
+                                          .copyWith(fontSize: 20),
+                                    )
+                                  ])),
+                              YMargin(20),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 50.0),
+                                child: Selector([
+                                  "Thin",
+                                  "Thick",
+                                ], (String selectedOption) {}),
+                              )
+                            ],
                           ),
-                          Positioned(
-                              bottom: 30,
-                              right: 0,
-                              left: 0,
-                              child: Container(
-                                height: 90,
-                                width: SizeConfig.screenWidthDp,
-                                child: ListView.builder(
-                                    padding: EdgeInsets.only(left: 30),
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: _listOfToppings.length,
-                                    cacheExtent: _listOfToppings.length.toDouble(),
-                                    itemBuilder:
-                                        (BuildContext context, int position) {
-                                      return ToppingItem(
-                                          topping: _listOfToppings[position],
-                                          onToppingSelected: (topping) {});
-                                    }),
-                              ))
-                        ]),
+                        ),
                       ),
-                    ],
+                    ),
                   ),
                   YMargin(70),
                 ],
@@ -252,14 +235,14 @@ class _ChooseToppingScreenState extends State<ChooseToppingScreen> {
                 left: 0,
                 right: 0,
                 child: XButton(
-                  radius: 0,
+                    radius: 0,
                     height: _config.sh(65).toDouble(),
                     width: SizeConfig.screenWidthDp,
                     onClick: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ConfirmPizzaScreen()));
+                          builder: (context) => ChooseToppingScreen()));
                     },
-                    text: "Done"))
+                    text: "Next"))
           ],
         ),
       ),

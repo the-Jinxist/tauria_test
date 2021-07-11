@@ -42,9 +42,9 @@ class _ConfirmPizzaScreenState extends State<ConfirmPizzaScreen> {
         child: Stack(
           children: [
             Container(
-              height: _config.sh(250).toDouble(),
+              height: _config.sh(150).toDouble(),
               width: SizeConfig.screenWidthDp,
-              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+              padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                     colors: [AppColors.redDark, AppColors.redLight],
@@ -53,16 +53,20 @@ class _ConfirmPizzaScreenState extends State<ConfirmPizzaScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SvgPicture.asset('pizza_icon'.toSVG()),
+                  SvgPicture.asset(
+                    'pizza_icon'.toSVG(),
+                    height: _config.sh(25).toDouble()
+                  ),
+                  YMargin(7),
                   NormalText(
                       text: 'Check your',
                       textColor: Colors.white,
-                      fontSize: 25),
+                      fontSize: 20),
                   YMargin(2),
                   TitleText(
                       text: 'custom pizza',
                       textColor: Colors.white,
-                      fontSize: 25)
+                      fontSize: 20)
                 ],
               ),
             ),
@@ -70,82 +74,102 @@ class _ConfirmPizzaScreenState extends State<ConfirmPizzaScreen> {
               alignment: Alignment.topRight,
               child: Container(
                 margin: EdgeInsets.only(top: 100),
-                height: _config.sh(500).toDouble(),
-                width: _config.sw(300).toDouble(),
+                height: _config.sh(400).toDouble(),
+                width: _config.sw(200).toDouble(),
                 child: Stack(
+                  alignment: Alignment.centerRight,
                   children: [
-                    Column(children: [
-                      Container(
-                        height: _config.sh(250).toDouble(),
-                        width: _config.sw(300).toDouble(),
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(
-                                    _config.sh(250).toDouble()))),
-                        child: ClipRect(
-                          child: BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.6),
-                              ),
-                              height: _config.sh(250).toDouble(),
-                              width: _config.sw(300).toDouble(),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: _config.sh(250).toDouble(),
-                        width: _config.sw(300).toDouble(),
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(
-                                    _config.sh(250).toDouble()))),
-                        child: ClipRect(
-                          child: BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.6),
-                              ),
-                              height: _config.sh(250).toDouble(),
-                              width: _config.sw(300).toDouble(),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ]),
-                    Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Container(
+                        height: _config.sh(400).toDouble(),
+                            width: _config.sw(200).toDouble(),
+                        child: Column(children: [
                           Container(
-                            height: _config.sh(220).toDouble(),
-                            width: _config.sw(300).toDouble(),
+                            height: _config.sh(200).toDouble(),
+                            width: _config.sw(200).toDouble(),
                             clipBehavior: Clip.antiAlias,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(
-                                        _config.sh(250).toDouble()))),
+                                        _config.sw(200).toDouble()))),
+                            child: ClipRect(
+                              child: BackdropFilter(
+                                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white.withOpacity(0.6),
+                                  ),
+                                  height: _config.sh(200).toDouble(),
+                                  width: _config.sw(200).toDouble(),
+                                ),
+                              ),
+                            ),
                           ),
                           Container(
-                            height: _config.sh(220).toDouble(),
-                            width: _config.sw(300).toDouble(),
+                            height: _config.sh(200).toDouble(),
+                            width: _config.sw(200).toDouble(),
                             clipBehavior: Clip.antiAlias,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(
-                                        _config.sh(250).toDouble()))),
+                                        _config.sh(200).toDouble()))),
+                            child: ClipRect(
+                              child: BackdropFilter(
+                                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white.withOpacity(0.6),
+                                  ),
+                                  height: _config.sh(200).toDouble(),
+                                  width: _config.sw(200).toDouble(),
+                                ),
+                              ),
+                            ),
                           ),
                         ]),
+                      ),
+                    ),
                     Align(
-                        alignment: Alignment.centerRight,
+                      alignment: Alignment.centerRight,
+                      child: Container(
+                        height: _config.sh(380).toDouble(),
+                                width: _config.sw(190).toDouble(),
+                        child: Column(
+                            children: [
+                              Container(
+                                height: _config.sh(190).toDouble(),
+                                width: _config.sw(190).toDouble(),
+                                clipBehavior: Clip.antiAlias,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(
+                                            _config.sh(190).toDouble()))),
+                              ),
+                              Container(
+                                height: _config.sh(190).toDouble(),
+                                width: _config.sw(190).toDouble(),
+                                clipBehavior: Clip.antiAlias,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(
+                                            _config.sh(190).toDouble()))),
+                              ),
+                            ]),
+                      ),
+                    ),
+                    Positioned(
+                        top: 20,
+                        bottom: 20,
+                        right: 1,
+                        left: 0,
                         child: Image.asset(
+                          
                           'half_pizza'.toPng(),
-                          height: _config.sh(400).toDouble(),
-                          width: _config.sw(300).toDouble(),
+                          fit: BoxFit.cover,
+                          scale: 0.2,
                         ))
                   ],
                 ),
@@ -154,24 +178,28 @@ class _ConfirmPizzaScreenState extends State<ConfirmPizzaScreen> {
             Align(
               alignment: Alignment.topLeft,
               child: Container(
-                  margin: EdgeInsets.only(top: 300),
-                  height: _config.sh(430).toDouble(),
+                  margin: EdgeInsets.only(top: 230),
+                  height: _config.sh(380).toDouble(),
+                  width: _config.sw(220).toDouble(),
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(10.0),
-                      bottomRight: Radius.circular(10.0),
+                      topRight: Radius.circular(20.0),
+                      bottomRight: Radius.circular(20.0),
                     ),
                   ),
                   child: ClipRect(
                       child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                          filter: ImageFilter.blur(sigmaX: 7, sigmaY: 7),
                           child: Container(
                             height: _config.sh(430).toDouble(),
                             color: Colors.white.withOpacity(0.7),
                             padding: EdgeInsets.symmetric(vertical: 30),
                             child: Column(
+                              crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                               children: [
+                                YMargin(20),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 15.0),
@@ -180,20 +208,23 @@ class _ConfirmPizzaScreenState extends State<ConfirmPizzaScreen> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       SvgPicture.asset('checkout_icon'.toSVG(),
-                                          height: _config.sh(20).toDouble(),
-                                          width: _config.sw(20).toDouble()),
+                                          height: _config.sh(15).toDouble(),
+                                          width: _config.sw(15).toDouble(),
+                                          color: AppColors.redDark,
+                                      ),
+                                          YMargin(5),
                                       TitleText(
                                           text: 'ORDER SUMMARY',
-                                          fontSize: 10,
+                                          fontSize: 12,
                                           textColor: AppColors.redDark),
-                                      YMargin(30),
+                                      YMargin(20),
                                     ],
                                   ),
                                 ),
                                 Divider(
-                                  color: AppColors.backgroundColor,
+                                  color: AppColors.textColor,
                                 ),
-                                YMargin(30),
+                                YMargin(20),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 15.0),
@@ -287,24 +318,27 @@ class _ConfirmPizzaScreenState extends State<ConfirmPizzaScreen> {
                                     ],
                                   ),
                                 ),
-                                YMargin(30),
+                                YMargin(20),
                                 Divider(
-                                  color: AppColors.backgroundColor,
+                                  color: AppColors.textColor
                                 ),
-                                YMargin(30),
-                                Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      NormalText(
-                                        text: 'Total',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                      NormalText(
-                                        text: '\$14.50',
-                                        fontSize: 27,
-                                      ),
-                                    ])
+                                YMargin(20),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                                  child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        NormalText(
+                                          text: 'Total',
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        NormalText(
+                                          text: '\$14.50',
+                                          fontSize: 27,
+                                        ),
+                                      ]),
+                                )
                               ],
                             ),
                           )))),

@@ -65,11 +65,6 @@ class XButton extends StatelessWidget {
               colors: [AppColors.redDark, AppColors.redLight], 
               stops: [0.1, 0.9]
             ),
-            boxShadow: [BoxShadow(
-              blurRadius: 10,
-              spreadRadius: 5,
-              color: AppColors.redDark.withOpacity(0.4)
-            )],
             borderRadius: radius != null
                 ? BorderRadius.circular(radius!)
                 : BorderRadius.circular(5.0),

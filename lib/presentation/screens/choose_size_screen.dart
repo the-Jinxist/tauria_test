@@ -6,6 +6,7 @@ import 'package:tauria_test/presentation/reusables/button.dart';
 import 'package:tauria_test/presentation/reusables/margin.dart';
 import 'package:tauria_test/presentation/reusables/selector.dart';
 import 'package:tauria_test/presentation/reusables/texts.dart';
+import 'package:tauria_test/presentation/screens/choose_crust_screen.dart';
 import 'package:tauria_test/presentation/utils/colors.dart';
 import 'package:tauria_test/presentation/utils/size_config.dart';
 import 'package:tauria_test/domain/extensions.dart';
@@ -57,14 +58,15 @@ class _ChooseSizeScreenState extends State<ChooseSizeScreen> {
                             width: 1)),
                   ),
                   Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                       margin:
                           EdgeInsets.only(bottom: _config.sh(55).toDouble()),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           color: Color(0xFCCCCCCC)),
                       child: TitleText(
-                        text: '12\"',
+                        text: '+\$2.00',
                         fontSize: 10,
                         textColor: AppColors.textColor,
                       )),
@@ -116,14 +118,14 @@ class _ChooseSizeScreenState extends State<ChooseSizeScreen> {
                   ),
                   YMargin(20),
                   SizedBox(
-                      height: _config.sh(290).toDouble(),
-                      width: _config.sw(290).toDouble(),
+                      height: _config.sh(320).toDouble(),
+                      width: _config.sw(320).toDouble(),
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
                           Container(
-                            height: _config.sh(280).toDouble(),
-                            width: _config.sw(280).toDouble(),
+                            height: _config.sh(300).toDouble(),
+                            width: _config.sw(300).toDouble(),
                             child: ClipRect(
                               clipBehavior: Clip.antiAliasWithSaveLayer,
                               child: BackdropFilter(
@@ -134,15 +136,15 @@ class _ChooseSizeScreenState extends State<ChooseSizeScreen> {
                                     color: Colors.white.withOpacity(0.6),
                                     shape: BoxShape.circle,
                                   ),
-                                  height: _config.sh(280).toDouble(),
-                                  width: _config.sw(280).toDouble(),
+                                  height: _config.sh(300).toDouble(),
+                                  width: _config.sw(300).toDouble(),
                                 ),
                               ),
                             ),
                           ),
                           Container(
-                            height: _config.sh(250).toDouble(),
-                            width: _config.sw(250).toDouble(),
+                            height: _config.sh(260).toDouble(),
+                            width: _config.sw(260).toDouble(),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               shape: BoxShape.circle,
@@ -160,7 +162,7 @@ class _ChooseSizeScreenState extends State<ChooseSizeScreen> {
                           )
                         ],
                       )),
-                  YMargin(120),
+                  YMargin(90),
                   Container(
                     height: _config.sh(140).toDouble(),
                     width: SizeConfig.screenWidthDp - 30,
@@ -194,7 +196,8 @@ class _ChooseSizeScreenState extends State<ChooseSizeScreen> {
                                   ])),
                               YMargin(20),
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20.0),
                                 child: Selector(["Small", "Medium", "Large"],
                                     (String selectedOption) {}),
                               )
@@ -216,7 +219,10 @@ class _ChooseSizeScreenState extends State<ChooseSizeScreen> {
                     radius: 0,
                     height: _config.sh(65).toDouble(),
                     width: SizeConfig.screenWidthDp,
-                    onClick: () {},
+                    onClick: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ChooseCrustScreen()));
+                    },
                     text: "Next"))
           ],
         ),
