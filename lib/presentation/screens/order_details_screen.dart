@@ -69,15 +69,15 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                       margin: EdgeInsets.only(top: 100, left: 15, right: 15),
                       clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      height: _config.sh(700).toDouble(),
+                      height: _config.sh(550).toDouble(),
                       width: SizeConfig.screenWidthDp,
                       child: ClipRect(
                           child: BackdropFilter(
                         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                         child: Container(
-                          height: _config.sh(700).toDouble(),
+                          height: _config.sh(550).toDouble(),
                           width: SizeConfig.screenWidthDp,
                           color: Colors.white.withOpacity(0.7),
                           child: Column(children: [
@@ -86,7 +86,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 20.0),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Column(children: [
                                     TitleText(
@@ -139,121 +140,149 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                    Container(
-                                      width: _config.sw(20).toDouble(),
-                                      height: _config.sh(20).toDouble(),
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        border:
-                                            Border.all(color: AppColors.redDark),
-                                        gradient: LinearGradient(colors: [
-                                          AppColors.redDark.withOpacity(0.5),
-                                          AppColors.redLight.withOpacity(0.5)
-                                        ], stops: [
-                                          0.1,
-                                          0.9
-                                        ]),
-                                      ),
-                                      child: Center(
-                                        child: Icon(Icons.check,
-                                        size: 15,
-                                            color: AppColors.redDark),
-                                      ),
-                                    ),
-                                    Container(
-                                      height: _config.sh(50).toDouble(),
-                                      width: 1,
-                                      color: AppColors.redDark,
-                                    ),
-                                    Container(
-                                      width: _config.sw(20).toDouble(),
-                                      height: _config.sh(20).toDouble(),
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        border:
-                                            Border.all(color: AppColors.redDark),
-                                        gradient: LinearGradient(colors: [
-                                          AppColors.redDark.withOpacity(0.5),
-                                          AppColors.redLight.withOpacity(0.5)
-                                        ], stops: [
-                                          0.1,
-                                          0.9
-                                        ]),
-                                      ),
-                                      child: Center(
-                                          child: SvgPicture.asset(
-                                              'preparing_icon'.toSVG())),
-                                    ),
-                                    Container(
-                                        height: _config.sh(50).toDouble(),
-                                        width: 1,
-                                        color: AppColors.backgroundColor),
-                                    Container(
-                                      width: _config.sw(20).toDouble(),
-                                      height: _config.sh(20).toDouble(),
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: AppColors.backgroundColor,
-                                        boxShadow: [
-                                          BoxShadow(color: Colors.grey),
-                                          BoxShadow(
-                                              blurRadius: 12.0,
-                                              spreadRadius: -12.0,
-                                              color: AppColors.backgroundColor)
-                                        ],
-                                      ),
-                                      child: Center(
-                                          child: SvgPicture.asset(
-                                              'bag_icon'.toSVG())),
-                                    ),
-                                    Container(
-                                        height: _config.sh(50).toDouble(),
-                                        width: 1,
-                                        color: AppColors.backgroundColor),
-                                    Container(
-                                      width: _config.sw(20).toDouble(),
-                                      height: _config.sh(20).toDouble(),
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: AppColors.backgroundColor,
-                                        boxShadow: [
-                                          BoxShadow(color: Colors.grey),
-                                          BoxShadow(
-                                              blurRadius: 12.0,
-                                              spreadRadius: -12.0,
-                                              color: AppColors.backgroundColor)
-                                        ],
-                                      ),
-                                      child: Center(
-                                          child: SvgPicture.asset(
-                                              'transit_icon'.toSVG())),
-                                    ),
-                                    Container(
-                                        height: _config.sh(50).toDouble(),
-                                        width: 1,
-                                        color: AppColors.backgroundColor),
-                                    Container(
-                                      width: _config.sw(20).toDouble(),
-                                      height: _config.sh(20).toDouble(),
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: AppColors.backgroundColor,
-                                        boxShadow: [
-                                          BoxShadow(color: Colors.grey),
-                                          BoxShadow(
-                                              blurRadius: 12.0,
-                                              spreadRadius: -12.0,
-                                              color: AppColors.backgroundColor)
-                                        ],
-                                      ),
-                                      child: Center(
-                                          child: SvgPicture.asset(
-                                              'delivered_icon'.toSVG())),
-                                    ),
-                                  ]),
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          padding: EdgeInsets.all(5.0),
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            border: Border.all(
+                                                color: AppColors.redDark),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  blurRadius: 10,
+                                                  spreadRadius: 3,
+                                                  color: AppColors.redDark
+                                                      .withOpacity(0.3))
+                                            ],
+                                            gradient: LinearGradient(colors: [
+                                              AppColors.redDark
+                                                  .withOpacity(0.5),
+                                              AppColors.redLight
+                                                  .withOpacity(0.5)
+                                            ], stops: [
+                                              0.1,
+                                              0.9
+                                            ]),
+                                          ),
+                                          child: Center(
+                                            child: Icon(Icons.check,
+                                                size: 17,
+                                                color: AppColors.redDark),
+                                          ),
+                                        ),
+                                        Container(
+                                          height: _config.sh(50).toDouble(),
+                                          width: 1,
+                                          color: AppColors.redDark,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.all(5.0),
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  blurRadius: 10,
+                                                  spreadRadius: 3,
+                                                  color: AppColors.redDark
+                                                      .withOpacity(0.3))
+                                            ],
+                                            border: Border.all(
+                                                color: AppColors.redDark),
+                                            gradient: LinearGradient(colors: [
+                                              AppColors.redDark
+                                                  .withOpacity(0.5),
+                                              AppColors.redLight
+                                                  .withOpacity(0.5)
+                                            ], stops: [
+                                              0.1,
+                                              0.9
+                                            ]),
+                                          ),
+                                          child: Center(
+                                              child: SvgPicture.asset(
+                                                  'preparing_icon'.toSVG())),
+                                        ),
+                                        Container(
+                                            height: _config.sh(50).toDouble(),
+                                            width: 1,
+                                            color: AppColors.backgroundColor),
+                                        Container(
+                                          padding: EdgeInsets.all(5.0),
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: AppColors.backgroundColor,
+                                            boxShadow: [
+                                              BoxShadow(color: Colors.grey),
+                                              BoxShadow(
+                                                  blurRadius: 12.0,
+                                                  spreadRadius: -12.0,
+                                                  color:
+                                                      AppColors.backgroundColor)
+                                            ],
+                                          ),
+                                          child: Center(
+                                              child: SvgPicture.asset(
+                                                  'bag_icon'.toSVG(),
+                                                  height:
+                                                      _config.sh(17).toDouble(),
+                                                  width: _config
+                                                      .sw(17)
+                                                      .toDouble())),
+                                        ),
+                                        Container(
+                                            height: _config.sh(50).toDouble(),
+                                            width: 1,
+                                            color: AppColors.backgroundColor),
+                                        Container(
+                                          padding: EdgeInsets.all(5.0),
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: AppColors.backgroundColor,
+                                            boxShadow: [
+                                              BoxShadow(color: Colors.grey),
+                                              BoxShadow(
+                                                  blurRadius: 12.0,
+                                                  spreadRadius: -12.0,
+                                                  color:
+                                                      AppColors.backgroundColor)
+                                            ],
+                                          ),
+                                          child: Center(
+                                              child: SvgPicture.asset(
+                                                  'transit_icon'.toSVG())),
+                                        ),
+                                        Container(
+                                            height: _config.sh(50).toDouble(),
+                                            width: 1,
+                                            color: AppColors.backgroundColor),
+                                        Container(
+                                          padding: EdgeInsets.all(5.0),
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: AppColors.backgroundColor,
+                                            boxShadow: [
+                                              BoxShadow(color: Colors.grey),
+                                              BoxShadow(
+                                                  blurRadius: 12.0,
+                                                  spreadRadius: -12.0,
+                                                  color:
+                                                      AppColors.backgroundColor)
+                                            ],
+                                          ),
+                                          child: Center(
+                                              child: SvgPicture.asset(
+                                                  'delivered_icon'.toSVG(),
+                                                  height:
+                                                      _config.sh(17).toDouble(),
+                                                  width: _config
+                                                      .sw(17)
+                                                      .toDouble())),
+                                        ),
+                                      ]),
                                   XMargin(20),
                                   Column(
                                       crossAxisAlignment:
@@ -275,7 +304,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                             ),
                                           ],
                                         ),
-                                        YMargin(105),
+                                        YMargin(55),
                                         Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -292,15 +321,15 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                             ),
                                           ],
                                         ),
-                                        YMargin(105),
+                                        YMargin(55),
                                         NormalText(
                                           text: 'Dispatched',
                                         ),
-                                        YMargin(105),
+                                        YMargin(60),
                                         NormalText(
                                           text: 'In Transit',
                                         ),
-                                        YMargin(105),
+                                        YMargin(66),
                                         NormalText(
                                           text: 'Delivered',
                                         ),
@@ -313,11 +342,11 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                       ))),
                   YMargin(20),
                   Container(
-                    height: _config.sh(120).toDouble(),
-                    width: SizeConfig.screenWidthDp - 50,
+                    height: _config.sh(100).toDouble(),
+                    width: SizeConfig.screenWidthDp - 30,
                     clipBehavior: Clip.antiAlias,
                     decoration: BoxDecoration(
-                        color: AppColors.lightGreen.withOpacity(0.7),
+                        color: AppColors.lightGreen.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(color: AppColors.green)),
                     child: Row(
@@ -329,11 +358,17 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Container(
-                                padding: EdgeInsets.all(2),
+                                padding: EdgeInsets.all(10),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   border: Border.all(color: AppColors.green),
                                   color: AppColors.lightGreen.withOpacity(0.9),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        blurRadius: 10,
+                                        spreadRadius: 3,
+                                        color: AppColors.green.withOpacity(0.3))
+                                  ],
                                 ),
                                 child: Center(
                                     child: SvgPicture.asset(
@@ -341,31 +376,52 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                               ),
                               XMargin(10),
                               Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  TitleText(text: 'Earned cashback!', fontSize: 17, textColor: AppColors.green,),
-                                  NormalText(text: '+\$1.45')
-                                ]
-                              )
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    TitleText(
+                                      text: 'Earned cashback!',
+                                      fontSize: 15,
+                                      textColor: AppColors.green,
+                                    ),
+                                    NormalText(text: '+\$1.45')
+                                  ])
                             ],
                           ),
                         ),
                         Container(
-                            height: _config.sh(120).toDouble(),
-                            width: _config.sw(60).toDouble(),
-                            decoration: BoxDecoration(
-                                color: AppColors.lightGreen,
-                                border: Border(
-                                    right: BorderSide(color: AppColors.green))),
-                            child: Center(
-                                child: Icon(
-                              Icons.chevron_right_rounded,
-                              size: 30,
-                              color: AppColors.green,
-                            )))
+                          height: _config.sh(100).toDouble(),
+                          width: _config.sw(71).toDouble(),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                height: _config.sh(100).toDouble(),
+                                width: _config.sw(1).toDouble(),
+                                color: AppColors.green,
+                              ),
+                              Container(
+                                  height: _config.sh(100).toDouble(),
+                                  width: _config.sw(70).toDouble(),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.lightGreen,
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(20),
+                                        bottomRight: Radius.circular(20)),
+                                  ),
+                                  child: Center(
+                                      child: Icon(
+                                    Icons.chevron_right_rounded,
+                                    size: 50,
+                                    color: AppColors.green,
+                                  ))),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
-                  )
+                  ),
+                  YMargin(100)
                 ],
               ),
             ),

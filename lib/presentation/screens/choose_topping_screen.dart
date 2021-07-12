@@ -184,13 +184,15 @@ class _ChooseToppingScreenState extends State<ChooseToppingScreen> {
                               width: SizeConfig.screenWidthDp - 30,
                               child: ClipRect(
                                 child: BackdropFilter(
-                                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                                  filter:
+                                      ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                                   child: Container(
                                     height: _config.sh(200).toDouble(),
                                     width: SizeConfig.screenWidthDp - 30,
                                     decoration: BoxDecoration(
                                         color: Colors.white.withOpacity(0.6),
-                                        borderRadius: BorderRadius.circular(20)),
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
                                     child: Column(
                                       children: [
                                         YMargin(20),
@@ -210,8 +212,12 @@ class _ChooseToppingScreenState extends State<ChooseToppingScreen> {
                                                     .copyWith(fontSize: 20),
                                               )
                                             ])),
-                                            YMargin(5),
-                                        TitleText(text: 'FREE 3 ADD-ONS', fontSize: 12, textColor: AppColors.textColor.withOpacity(0.8)),
+                                        YMargin(5),
+                                        TitleText(
+                                            text: 'FREE 3 ADD-ONS',
+                                            fontSize: 12,
+                                            textColor: AppColors.textColor
+                                                .withOpacity(0.8)),
                                         YMargin(20),
                                       ],
                                     ),
@@ -231,10 +237,13 @@ class _ChooseToppingScreenState extends State<ChooseToppingScreen> {
                                     padding: EdgeInsets.only(left: 30),
                                     scrollDirection: Axis.horizontal,
                                     itemCount: _listOfToppings.length,
-                                    cacheExtent: _listOfToppings.length.toDouble(),
+                                    cacheExtent:
+                                        _listOfToppings.length.toDouble(),
                                     itemBuilder:
                                         (BuildContext context, int position) {
                                       return ToppingItem(
+                                          key: ObjectKey(
+                                              _listOfToppings[position]),
                                           topping: _listOfToppings[position],
                                           onToppingSelected: (topping) {});
                                     }),
@@ -252,7 +261,7 @@ class _ChooseToppingScreenState extends State<ChooseToppingScreen> {
                 left: 0,
                 right: 0,
                 child: XButton(
-                  radius: 0,
+                    radius: 0,
                     height: _config.sh(65).toDouble(),
                     width: SizeConfig.screenWidthDp,
                     onClick: () {
