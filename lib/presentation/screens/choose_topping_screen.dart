@@ -13,7 +13,20 @@ import 'package:tauria_test/presentation/utils/size_config.dart';
 import 'package:tauria_test/domain/extensions.dart';
 
 class ChooseToppingScreen extends StatefulWidget {
-  const ChooseToppingScreen({Key? key}) : super(key: key);
+  final String pizaSize;
+  final String pizzaCrust;
+  final int currentTotalPrice;
+  final int pizzaSizePrice;
+  final int pizzaCrustPrice;
+
+  const ChooseToppingScreen(
+      {Key? key,
+      required this.pizaSize,
+      required this.pizzaCrust,
+      required this.currentTotalPrice,
+      required this.pizzaSizePrice,
+      required this.pizzaCrustPrice})
+      : super(key: key);
 
   @override
   _ChooseToppingScreenState createState() => _ChooseToppingScreenState();
@@ -21,6 +34,11 @@ class ChooseToppingScreen extends StatefulWidget {
 
 class _ChooseToppingScreenState extends State<ChooseToppingScreen> {
   final SizeConfig _config = SizeConfig();
+
+  String _image = 'thin_crust_pizza'.toPng();
+  String baseImage = 'thin_crust_pizza'.toPng();
+
+  final List<String> selectedToppings = [];
 
   List<Topping> _listOfToppings = <Topping>[
     Topping(
@@ -40,6 +58,18 @@ class _ChooseToppingScreenState extends State<ChooseToppingScreen> {
         toppingImageName: 'mushrooms',
         toppingPrice: '0.00'),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.pizzaCrust.toLowerCase().contains("thick")) {
+      setState(() {
+        _image = 'thick_crust_pizza'.toPng();
+        baseImage = 'thick_crust_pizza'.toPng();
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,30 +122,43 @@ class _ChooseToppingScreenState extends State<ChooseToppingScreen> {
                             ),
                             YMargin(2),
                             Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 TitleText(
-                                  text: 'MEDIUM,',
+                                  text: '${widget.pizaSize.toUpperCase()},',
                                   fontSize: 12,
                                   textColor: Colors.white,
                                 ),
                                 XMargin(5),
                                 TitleText(
-                                  text: 'THICK CRUST,',
+                                  text: '${widget.pizzaCrust.toUpperCase()},',
                                   fontSize: 12,
                                   textColor: Colors.white,
                                 ),
                                 XMargin(5),
-                                TitleText(
-                                  text: 'TOPPINGS',
-                                  fontSize: 12,
-                                  textColor: Colors.white.withOpacity(0.5),
+                                SizedBox(
+                                  width: _config.sw(120).toDouble(),
+                                  child: TitleText(
+                                    maxLines: 4,
+                                    text: selectedToppings.isEmpty
+                                        ? 'TOPPINGS'
+                                        : selectedToppings
+                                            .toString()
+                                            .replaceAll("[", "")
+                                            .replaceAll("]", "")
+                                            .toUpperCase(),
+                                    fontSize: 12,
+                                    textColor: selectedToppings.isEmpty
+                                        ? Colors.white.withOpacity(0.5)
+                                        : Colors.white,
+                                  ),
                                 ),
                               ],
                             )
                           ],
                         ),
                         TitleText(
-                          text: '\$12.00',
+                          text: '\$${widget.currentTotalPrice}.00',
                           textColor: Colors.white,
                         )
                       ],
@@ -160,7 +203,7 @@ class _ChooseToppingScreenState extends State<ChooseToppingScreen> {
                             child: Padding(
                               padding: const EdgeInsets.only(top: 30.0),
                               child: Image.asset(
-                                'thin_crust_pizza'.toPng(),
+                                _image,
                                 height: _config.sh(320).toDouble(),
                                 width: _config.sw(320).toDouble(),
                                 fit: BoxFit.cover,
@@ -237,15 +280,96 @@ class _ChooseToppingScreenState extends State<ChooseToppingScreen> {
                                     padding: EdgeInsets.only(left: 30),
                                     scrollDirection: Axis.horizontal,
                                     itemCount: _listOfToppings.length,
-                                    cacheExtent:
-                                        _listOfToppings.length.toDouble(),
+                                    cacheExtent: 200,
+                                    semanticChildCount: _listOfToppings.length,
+                                    shrinkWrap: true,
+                                    addAutomaticKeepAlives: true,
                                     itemBuilder:
                                         (BuildContext context, int position) {
                                       return ToppingItem(
                                           key: ObjectKey(
                                               _listOfToppings[position]),
                                           topping: _listOfToppings[position],
-                                          onToppingSelected: (topping) {});
+                                          onToppingSelected: (Topping topping,
+                                              bool isSelected) {
+                                            if (isSelected) {
+                                              if (!selectedToppings.contains(
+                                                  topping.toppingName)) {
+                                                setState(() {
+                                                  selectedToppings
+                                                      .add(topping.toppingName);
+                                                });
+                                              }
+                                              if (topping.toppingName
+                                                  .toLowerCase()
+                                                  .contains("pepp")) {
+                                                setState(() {
+                                                  _image = 'pizza_w_pepperoni'
+                                                      .toPng();
+                                                });
+                                              }
+                                              if (topping.toppingName
+                                                  .toLowerCase()
+                                                  .contains("mush")) {
+                                                setState(() {
+                                                  _image = 'pizza_w_mushrooms'
+                                                      .toPng();
+                                                });
+                                              }
+                                              if (topping.toppingName
+                                                  .toLowerCase()
+                                                  .contains("black")) {
+                                                setState(() {
+                                                  _image =
+                                                      'pizza_w_olives'.toPng();
+                                                });
+                                              }
+                                              if (topping.toppingName
+                                                  .toLowerCase()
+                                                  .contains("onions")) {
+                                                setState(() {
+                                                  _image =
+                                                      'pizza_w_onions'.toPng();
+                                                });
+                                              }
+                                            } else {
+                                              setState(() {
+                                                selectedToppings.remove(
+                                                    topping.toppingName);
+                                              });
+                                              if (topping.toppingName
+                                                  .toLowerCase()
+                                                  .contains("pepp")) {
+                                                setState(() {
+                                                  _image = baseImage;
+                                                });
+                                              }
+                                              if (topping.toppingName
+                                                  .toLowerCase()
+                                                  .contains("mush")) {
+                                                setState(() {
+                                                  _image = 'pizza_w_pepperoni'
+                                                      .toPng();
+                                                });
+                                              }
+                                              if (topping.toppingName
+                                                  .toLowerCase()
+                                                  .contains("black")) {
+                                                setState(() {
+                                                  _image = 'pizza_w_mushrooms'
+                                                      .toPng();
+                                                });
+                                              }
+                                              if (topping.toppingName
+                                                  .toLowerCase()
+                                                  .contains("onions")) {
+                                                setState(() {
+                                                  _image =
+                                                      'pizza_w_olives'.toPng();
+                                                });
+                                              }
+                                            }
+                                          });
                                     }),
                               ))
                         ]),
@@ -265,8 +389,15 @@ class _ChooseToppingScreenState extends State<ChooseToppingScreen> {
                     height: _config.sh(65).toDouble(),
                     width: SizeConfig.screenWidthDp,
                     onClick: () {
+                      print(selectedToppings.toString());
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ConfirmPizzaScreen()));
+                          builder: (context) => ConfirmPizzaScreen(
+                                pizzaCrust: widget.pizzaCrust,
+                                pizzaCrustPrice: widget.pizzaCrustPrice,
+                                pizzaSize: widget.pizaSize + " Size",
+                                pizzaSizePrice: widget.pizzaSizePrice,
+                                toppings: selectedToppings,
+                              )));
                     },
                     text: "Done"))
           ],

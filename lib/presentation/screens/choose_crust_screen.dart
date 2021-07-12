@@ -12,7 +12,12 @@ import 'package:tauria_test/presentation/utils/size_config.dart';
 import 'package:tauria_test/domain/extensions.dart';
 
 class ChooseCrustScreen extends StatefulWidget {
-  const ChooseCrustScreen({Key? key}) : super(key: key);
+  final String pizzaSize;
+  final int pizzaPrice;
+
+  const ChooseCrustScreen(
+      {Key? key, required this.pizzaSize, required this.pizzaPrice})
+      : super(key: key);
 
   @override
   _ChooseCrustScreenState createState() => _ChooseCrustScreenState();
@@ -20,6 +25,23 @@ class ChooseCrustScreen extends StatefulWidget {
 
 class _ChooseCrustScreenState extends State<ChooseCrustScreen> {
   final SizeConfig _config = SizeConfig();
+
+  int _pizzaPrice = 0;
+  int _additionalPrice = 4;
+
+  int _finalPrice = 14;
+
+  String image = 'thick_crust_pizza'.toPng();
+  String pizzaCrust = "Thick Crust";
+
+  @override
+  void initState() {
+    super.initState();
+
+    setState(() {
+      _pizzaPrice = widget.pizzaPrice + 4;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +88,7 @@ class _ChooseCrustScreenState extends State<ChooseCrustScreen> {
                           borderRadius: BorderRadius.circular(15),
                           color: Color(0xFCCCCCCC)),
                       child: TitleText(
-                        text: '+\$2.00',
+                        text: '+\$$_additionalPrice.00',
                         fontSize: 10,
                         textColor: AppColors.textColor,
                       )),
@@ -104,7 +126,7 @@ class _ChooseCrustScreenState extends State<ChooseCrustScreen> {
                             Row(
                               children: [
                                 TitleText(
-                                  text: 'MEDIUM,',
+                                  text: '${widget.pizzaSize.toUpperCase()},',
                                   fontSize: 12,
                                   textColor: Colors.white,
                                 ),
@@ -125,7 +147,7 @@ class _ChooseCrustScreenState extends State<ChooseCrustScreen> {
                           ],
                         ),
                         TitleText(
-                          text: '\$12.00',
+                          text: '\$$_pizzaPrice.00',
                           textColor: Colors.white,
                         )
                       ],
@@ -170,7 +192,7 @@ class _ChooseCrustScreenState extends State<ChooseCrustScreen> {
                             child: Padding(
                               padding: const EdgeInsets.only(top: 30.0),
                               child: Image.asset(
-                                'thin_crust_pizza'.toPng(),
+                                image,
                                 height: _config.sh(320).toDouble(),
                                 width: _config.sw(320).toDouble(),
                                 fit: BoxFit.cover,
@@ -218,7 +240,33 @@ class _ChooseCrustScreenState extends State<ChooseCrustScreen> {
                                 child: Selector([
                                   "Thin",
                                   "Thick",
-                                ], (String selectedOption) {}),
+                                ], (String selectedOption) {
+                                  if (selectedOption == "Thin") {
+
+                                    int newPrice = widget.pizzaPrice + 2;
+                                    _finalPrice = newPrice;
+
+                                    setState(() {
+                                      _pizzaPrice = newPrice;
+                                      _additionalPrice = 2;
+                                      image = 'thin_crust_pizza'.toPng();
+                                      pizzaCrust = "Thin Crust";
+                                    });
+
+                                  } else {
+
+                                    int newPrice = widget.pizzaPrice + 4;
+                                    _finalPrice = newPrice;
+
+                                    setState(() {
+                                      _pizzaPrice = newPrice;
+                                      _additionalPrice = 4;
+                                      image = 'thick_crust_pizza'.toPng();
+                                      pizzaCrust = "Thick Crust";
+                                    });
+
+                                  }
+                                }),
                               )
                             ],
                           ),
@@ -240,7 +288,13 @@ class _ChooseCrustScreenState extends State<ChooseCrustScreen> {
                     width: SizeConfig.screenWidthDp,
                     onClick: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ChooseToppingScreen()));
+                          builder: (context) => ChooseToppingScreen(
+                            currentTotalPrice: _finalPrice,
+                            pizaSize: widget.pizzaSize,
+                            pizzaCrust: pizzaCrust,
+                            pizzaCrustPrice: _additionalPrice,
+                            pizzaSizePrice: widget.pizzaPrice,
+                          )));
                     },
                     text: "Next"))
           ],

@@ -19,7 +19,23 @@ class ChooseSizeScreen extends StatefulWidget {
 }
 
 class _ChooseSizeScreenState extends State<ChooseSizeScreen> {
-  final SizeConfig _config = SizeConfig();
+  SizeConfig _config = SizeConfig();
+  double _pizzaHeight = 0.0;
+  double _pizzaWidth = 0.0;
+
+  String _pizzaSizeInInches = '12\"';
+  int _pizzaPrice = 10;
+  String _pizzaSize = "Medium";
+
+  @override
+  void initState() {
+    super.initState();
+
+    setState(() {
+      _pizzaHeight = _config.sh(280).toDouble();
+      _pizzaWidth = _config.sw(280).toDouble();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +82,7 @@ class _ChooseSizeScreenState extends State<ChooseSizeScreen> {
                           borderRadius: BorderRadius.circular(15),
                           color: Color(0xFCCCCCCC)),
                       child: TitleText(
-                        text: '+\$2.00',
+                        text: _pizzaSizeInInches,
                         fontSize: 10,
                         textColor: AppColors.textColor,
                       )),
@@ -109,7 +125,7 @@ class _ChooseSizeScreenState extends State<ChooseSizeScreen> {
                           ],
                         ),
                         TitleText(
-                          text: '\$10.00',
+                          text: "\$$_pizzaPrice.00",
                           fontSize: 22,
                           textColor: Colors.white,
                         )
@@ -156,6 +172,8 @@ class _ChooseSizeScreenState extends State<ChooseSizeScreen> {
                               padding: const EdgeInsets.only(top: 30.0),
                               child: Image.asset(
                                 'large_size_pizza'.toPng(),
+                                height: _pizzaHeight,
+                                width: _pizzaWidth,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -199,7 +217,36 @@ class _ChooseSizeScreenState extends State<ChooseSizeScreen> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 20.0),
                                 child: Selector(["Small", "Medium", "Large"],
-                                    (String selectedOption) {}),
+                                    (String selectedOption) {
+                                  _pizzaSize = selectedOption;
+                                  print(selectedOption);
+                                  if (selectedOption == "Large") {
+                                    setState(() {
+                                      _pizzaHeight = _config.sh(300).toDouble();
+                                      _pizzaWidth = _config.sw(300).toDouble();
+                                      _pizzaSizeInInches = '14\"';
+                                      _pizzaPrice = 12;
+                                    });
+                                  }
+
+                                  if (selectedOption == "Medium") {
+                                    setState(() {
+                                      _pizzaHeight = _config.sh(280).toDouble();
+                                      _pizzaWidth = _config.sw(280).toDouble();
+                                      _pizzaSizeInInches = '12\"';
+                                      _pizzaPrice = 10;
+                                    });
+                                  }
+
+                                  if (selectedOption == "Small") {
+                                    setState(() {
+                                      _pizzaHeight = _config.sh(240).toDouble();
+                                      _pizzaWidth = _config.sw(240).toDouble();
+                                      _pizzaSizeInInches = '10\"';
+                                      _pizzaPrice = 8;
+                                    });
+                                  }
+                                }),
                               )
                             ],
                           ),
@@ -221,7 +268,10 @@ class _ChooseSizeScreenState extends State<ChooseSizeScreen> {
                     width: SizeConfig.screenWidthDp,
                     onClick: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ChooseCrustScreen()));
+                          builder: (context) => ChooseCrustScreen(
+                            pizzaSize: _pizzaSize,
+                            pizzaPrice: _pizzaPrice,
+                          )));
                     },
                     text: "Next"))
           ],

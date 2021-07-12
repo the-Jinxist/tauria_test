@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tauria_test/domain/models/topping_model.dart';
 import 'package:tauria_test/presentation/reusables/button.dart';
 import 'package:tauria_test/presentation/reusables/margin.dart';
 import 'package:tauria_test/presentation/reusables/texts.dart';
@@ -11,7 +12,20 @@ import 'package:tauria_test/presentation/utils/size_config.dart';
 import 'package:tauria_test/domain/extensions.dart';
 
 class ConfirmPizzaScreen extends StatefulWidget {
-  const ConfirmPizzaScreen({Key? key}) : super(key: key);
+  final String pizzaSize;
+  final int pizzaSizePrice;
+  final String pizzaCrust;
+  final int pizzaCrustPrice;
+  final List<String> toppings;
+
+  const ConfirmPizzaScreen({Key? key, 
+    required this.pizzaSize,
+    required this.pizzaSizePrice,
+    required this.pizzaCrust,
+    required this.pizzaCrustPrice,
+    required this.toppings
+  
+  }) : super(key: key);
 
   @override
   _ConfirmPizzaScreenState createState() => _ConfirmPizzaScreenState();
@@ -239,84 +253,84 @@ class _ConfirmPizzaScreenState extends State<ConfirmPizzaScreen> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             NormalText(
-                                              text: 'Medium Size',
-                                              fontWeight: FontWeight.w500,
+                                              text: widget.pizzaSize,
+                                              fontSize: 17,
                                             ),
                                             TitleText(
-                                              text: '\$14.50',
+                                              text: '\$${widget.pizzaSizePrice}.00',
                                               fontSize: 12,
                                             ),
                                           ]),
-                                      YMargin(3),
+                                      YMargin(5),
                                       Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             NormalText(
-                                              text: 'Thick Crust',
-                                              fontWeight: FontWeight.w500,
+                                              text: widget.pizzaCrust,
+                                             fontSize: 17,
                                             ),
                                             TitleText(
-                                              text: '\$14.50',
+                                              text: '\$${widget.pizzaCrustPrice}.00',
                                               fontSize: 12,
                                             ),
                                           ]),
-                                      YMargin(3),
-                                      Row(
+                                      YMargin(5),
+                                      widget.toppings.contains("Pepperoni") ? Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             NormalText(
                                               text: 'Pepperoni',
-                                              fontWeight: FontWeight.w500,
+                                              fontSize: 17,
                                             ),
                                             TitleText(
-                                              text: '\$14.50',
+                                              text: '\$0.00',
                                               fontSize: 12,
                                             ),
-                                          ]),
-                                      YMargin(3),
-                                      Row(
+                                          ]): SizedBox(),
+                                      widget.toppings.contains("Pepperoni") ?YMargin(5): SizedBox(),
+                                      widget.toppings.contains("Black Olives") ?Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             NormalText(
                                               text: 'Black Olives',
-                                              fontWeight: FontWeight.w500,
+                                              fontSize: 17,
                                             ),
                                             TitleText(
-                                              text: '\$14.50',
+                                              text: '\$0.00',
                                               fontSize: 12,
                                             ),
-                                          ]),
-                                      YMargin(3),
-                                      Row(
+                                          ]): SizedBox(),
+                                      widget.toppings.contains("Black Olives") ? YMargin(5): SizedBox(),
+                                      widget.toppings.contains("Mushrooms") ?Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             NormalText(
                                               text: 'Mushroom',
-                                              fontWeight: FontWeight.w500,
+                                              fontSize: 17,
                                             ),
                                             TitleText(
-                                              text: '\$14.50',
+                                              text: '\$0.00',
                                               fontSize: 12,
                                             ),
-                                          ]),
-                                      YMargin(3),
-                                      Row(
+                                          ]) : SizedBox(),
+                                      widget.toppings.contains("Mushrooms") ? YMargin(5) : SizedBox(),
+                                       widget.toppings.contains("Onions") ? Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             NormalText(
                                               text: 'Onions',
-                                              fontWeight: FontWeight.w500,
+                                              fontSize: 17,
                                             ),
                                             TitleText(
-                                              text: '\$14.50',
+                                              text: '\$0.50',
                                               fontSize: 12,
                                             ),
-                                          ]),
+                                          ]): SizedBox(),
                                     ],
                                   ),
                                 ),
@@ -331,11 +345,11 @@ class _ConfirmPizzaScreenState extends State<ConfirmPizzaScreen> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         NormalText(
-                                          text: 'Total',
-                                          fontWeight: FontWeight.w500,
+                                          text: 'Total:',
+                                          fontSize: 17,
                                         ),
                                         NormalText(
-                                          text: '\$14.50',
+                                          text: '\$${widget.pizzaCrustPrice + widget.pizzaSizePrice}.00',
                                           fontSize: 27,
                                         ),
                                       ]),

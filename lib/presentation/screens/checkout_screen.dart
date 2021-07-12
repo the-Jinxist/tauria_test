@@ -21,6 +21,8 @@ class CheckoutScreen extends StatefulWidget {
 class _CheckoutScreenState extends State<CheckoutScreen> {
   final SizeConfig _config = SizeConfig();
 
+  bool _isSelected = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -197,8 +199,14 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                       child: Transform.scale(
                                         scale: 0.7,
                                         child: CupertinoSwitch(
-                                            value: false,
-                                            onChanged: (value) {}),
+                                            value: _isSelected,
+                                            activeColor: AppColors.redDark,
+                                            
+                                            onChanged: (value) {
+                                              setState(() {
+                                                _isSelected = value;
+                                              });
+                                            }),
                                       ),
                                     )
                                   ],

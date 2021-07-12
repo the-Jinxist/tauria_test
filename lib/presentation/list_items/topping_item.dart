@@ -8,7 +8,7 @@ import 'package:tauria_test/presentation/utils/size_config.dart';
 
 class ToppingItem extends StatefulWidget {
   final Topping topping;
-  final Function(Topping) onToppingSelected;
+  final Function(Topping, bool) onToppingSelected;
 
   const ToppingItem(
       {Key? key, required this.topping, required this.onToppingSelected})
@@ -39,10 +39,11 @@ class _ToppingItemState extends State<ToppingItem> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
-                  widget.topping.toppingImageName.toPng(), 
+                  widget.topping.toppingImageName.toPng(),
                   height: _config.sh(70).toDouble(),
                   width: _config.sw(70).toDouble(),
-                  fit: BoxFit.cover,),
+                  fit: BoxFit.cover,
+                ),
                 XMargin(10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,10 +61,11 @@ class _ToppingItemState extends State<ToppingItem> {
               onTap: () {
                 setState(() {
                   isSelected = !isSelected;
+                  widget.onToppingSelected(widget.topping, isSelected);
                 });
               },
               child: Container(
-                margin: EdgeInsets.only(left: 50),
+                  margin: EdgeInsets.only(left: 50),
                   height: _config.sh(20).toDouble(),
                   width: _config.sw(20).toDouble(),
                   decoration: BoxDecoration(
@@ -76,11 +78,11 @@ class _ToppingItemState extends State<ToppingItem> {
                         : null,
                     boxShadow: isSelected
                         ? [
-                      BoxShadow(
-                          blurRadius: 10,
-                          spreadRadius: 3,
-                          color: AppColors.redDark.withOpacity(0.3))
-                    ]
+                            BoxShadow(
+                                blurRadius: 10,
+                                spreadRadius: 3,
+                                color: AppColors.redDark.withOpacity(0.3))
+                          ]
                         : [
                             BoxShadow(color: Colors.grey),
                             BoxShadow(
